@@ -1,20 +1,22 @@
 import java.awt.Point;
 import java.util.ArrayList;
-
+import java.util.Collections;
+import java.util.List;
  /**
  *
  * @author pmargreff
  */
-//TODO: chamar o método super nas classes filhas
 public abstract class Piece {
     private final int cellSize_;
-//    private final int width_, height_; #aqui ou no construtor?
+    private final int width_, height_;
     
-    Piece(){
+    Piece(int width,int height){
         this.cellSize_ = 5;
+        this.width_ = width;
+        this.height_ = height;
     }
     
-    ArrayList<Point> body_ = new ArrayList<Point>();
+    ArrayList<Point> body_ = new ArrayList<>();
     
     /**
      * 37 = left

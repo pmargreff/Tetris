@@ -24,9 +24,6 @@ public class Piece2 extends Piece {
 
                 j++;
             }
-
         }
-
     }
-
 }

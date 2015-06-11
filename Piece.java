@@ -1,8 +1,6 @@
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
- /**
+/**
  *
  * @author pmargreff
  */
@@ -89,5 +87,15 @@ public abstract class Piece {
         return isInside;
     }
     
+    public int getSize(){
+        return body_.size();
+    }
     
+    public Point getCoordinate(int index){
+        return body_.get(index);
+    }
+    
+    public void turn(){
+        
+    }
 }

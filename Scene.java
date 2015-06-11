@@ -79,8 +79,8 @@ public class Scene {
      */
     public void getPiece(Piece part) {
         int column, line;
-        for (int i = 0; i < part.size(); i++) { //ver por que a classe não aceita a implementação dos métodos
-            Point tmp = new Point(part.get(i));
+        for (int i = 0; i < part.getSize(); i++) { //ver por que a classe não aceita a implementação dos métodos
+            Point tmp = new Point(part.getCoordinate(i));
             line = (int) tmp.getX();
             column = (int) tmp.getY();
             field_[line][column] = true;

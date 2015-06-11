@@ -1,6 +1,6 @@
+
 import java.awt.Point;
 import java.util.ArrayList;
-
 
 /**
  *
@@ -14,7 +14,5 @@ public class Piece1 extends Piece {
             Point tmp = new Point(width / 2, height + j);
             body_.add(tmp);
         }
-
     }
-
 }

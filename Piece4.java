@@ -10,8 +10,6 @@ import java.util.Comparator;
  */
 public class Piece4 extends Piece {
 
-    private ArrayList<Point> body_ = new ArrayList<Point>();
-
     Piece4(int width, int height) {
         super(width, height);
 

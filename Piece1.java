@@ -67,12 +67,6 @@ public class Piece1 extends Piece {
                         
                     h--;
                 }
-            
-                y[0] = 1;
-                
-                y[1] = -1;
-                
-                y[2] = -2;
                 
                 flag_ = 3;
                 

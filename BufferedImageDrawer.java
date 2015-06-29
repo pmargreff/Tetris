@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.*;
 
 /**
@@ -8,7 +10,7 @@ import java.awt.image.*;
 * @author Frank Klawonn
 * Last change 27.05.2005
 */
-public class BufferedImageDrawer extends Frame
+public class BufferedImageDrawer extends Frame implements KeyListener
 {
   //These image is drawn when the paint method is called.
   public BufferedImage bi;
@@ -33,21 +35,41 @@ public class BufferedImageDrawer extends Frame
     this.setTitle("Double-Buffering");
     this.setSize(width,height);
     this.setVisible(true);
+    this.setFocusable(true);
 
   }
 
 
+  @Override
   public void paint(Graphics g)
   {
     update(g);
   }
 
 
+  @Override
   public void update(Graphics g)
   {
     g2d = (Graphics2D) g;
     g2d.drawImage(bi,0,0,null);
   }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
+//            System.out.println("testatteunaeu");
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
 }

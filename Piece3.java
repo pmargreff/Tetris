@@ -1,6 +1,4 @@
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  *
@@ -13,7 +11,7 @@ public class Piece3 extends Piece {
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                Point tmp = new Point((width / 2) + i, height + j);
+                Point tmp = new Point((width / 2) + i  * cellSize_, height + j * cellSize_);
                 body_.add(tmp);
             }
         }

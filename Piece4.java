@@ -1,8 +1,4 @@
-
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
@@ -17,7 +13,7 @@ public class Piece4 extends Piece {
         body_.add(tmp);
 
         for (int i = -1; i < 2; i++) {
-            tmp = new Point((width / 2) + i, height + 1);
+            tmp = new Point((width / 2) - i  * cellSize_, height -  cellSize_);
             body_.add(tmp);
         }
     }

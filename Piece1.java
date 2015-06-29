@@ -1,6 +1,4 @@
-
 import java.awt.Point;
-import java.util.ArrayList;
 
 /**
  *
@@ -13,7 +11,7 @@ public class Piece1 extends Piece {
     Piece1(int width, int height) {
         super(width, height);
         for (int j = 0; j < 4; j++) {
-            Point tmp = new Point(width / 2, height + j);
+            Point tmp = new Point(width / 2, height + j * cellSize_);
             body_.add(tmp);
         }
     }
@@ -89,13 +87,13 @@ public class Piece1 extends Piece {
         }
         
         //reference 'ref' to calculate and  set the new cell of piece
-        tmp.setLocation((ref.getX() + x[0]), (ref.getY() + y[0]));
+        tmp.setLocation((ref.getX() + x[0] * cellSize_), (ref.getY() + y[0] * cellSize_));
         body_.set(0, tmp);
 
-        tmp.setLocation((ref.getX() + x[1]), (ref.getY() + y[1]));
+        tmp.setLocation((ref.getX() + x[1] * cellSize_), (ref.getY() + y[1] * cellSize_));
         body_.set(2, tmp);
 
-        tmp.setLocation((ref.getX() + x[2]), (ref.getY() + y[2]));
+        tmp.setLocation((ref.getX() + x[2] * cellSize_), (ref.getY() + y[2]  * cellSize_));
         body_.set(3, tmp);
     
     }

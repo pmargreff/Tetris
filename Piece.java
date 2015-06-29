@@ -5,11 +5,11 @@ import java.util.ArrayList;
  * @author pmargreff
  */
 public abstract class Piece {
-    private final int cellSize_;
+    protected final int cellSize_;
     private final int width_, height_;
     
     Piece(int width,int height){
-        this.cellSize_ = 5;
+        this.cellSize_ = 10;
         this.width_ = width;
         this.height_ = height;
     }
@@ -25,37 +25,31 @@ public abstract class Piece {
      */
     //TODO: tentar fazer o método mais curto
     public void move(int direction){
-        
         //move left
         if (direction == 37){
             for(int i = 0; i < body_.size(); i++){
-                
                 Point tmp = new Point(body_.get(i));
                 tmp.setLocation(tmp.getX() - cellSize_, tmp.getY());
-                body_.add(i, tmp);
-                
+                body_.set(i, tmp);
             }
         }
         
         //move right
         if (direction == 39){
-            for(int i = 0; i < body_.size(); i++){
-                
+            for(int i = 0; i < body_.size(); i++){                
                 Point tmp = new Point(body_.get(i));
                 tmp.setLocation(tmp.getX() + cellSize_, tmp.getY());
-                body_.add(i, tmp);
-                
+                body_.set(i, tmp);                
             }
         }
         
         //move down
         if (direction == 40){
+//            System.out.println(body_.size());
             for(int i = 0; i < body_.size(); i++){
-                
                 Point tmp = new Point(body_.get(i));
                 tmp.setLocation(tmp.getX(), tmp.getY() - cellSize_);
-                body_.add(i, tmp);
-                
+                body_.set(i, tmp);
             }
         }        
     }
@@ -64,8 +58,8 @@ public abstract class Piece {
      * move down twice
      */
     public void down(){
-        move (40);
-        move (40);
+        move(40);
+        move(40);
     }
     
     /**
@@ -91,7 +85,7 @@ public abstract class Piece {
         return body_.size();
     }
     
-    public Point getCoordinate(int index){
+    public Point getPoint(int index){
         return body_.get(index);
     }
     

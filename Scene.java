@@ -79,7 +79,7 @@ public class Scene {
     public void getPiece(Piece part) {
         int column, line;
         for (int i = 0; i < part.getSize(); i++) { //ver por que a classe não aceita a implementação dos métodos
-            Point tmp = new Point(part.getCoordinate(i));
+            Point tmp = new Point(part.getPoint(i));
             line = (int) tmp.getX();
             column = (int) tmp.getY();
             field_[line][column] = true;
@@ -91,7 +91,7 @@ public class Scene {
         int number;
         Random generator = new Random();
         number = generator.nextInt(7);
-        
+//        number = 8;
         switch(number){
                 case 0:
                     newPiece = new Piece1(width_ , height_);
@@ -123,7 +123,7 @@ public class Scene {
                     
                 //procurar qual classe gera o peça em formato de i e fazer com que essa seja a padrão    
                 default:
-                    newPiece = new Piece7(width_ , height_);
+                    newPiece = new Piece3(width_ , height_);
                     break;
             }
         return newPiece;

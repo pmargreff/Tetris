@@ -1,5 +1,4 @@
-
-import java.util.Collections;
+import java.util.Random;
 import java.awt.Point;
 
 /**
@@ -85,5 +84,48 @@ public class Scene {
             column = (int) tmp.getY();
             field_[line][column] = true;
         }
+    }
+    
+    public Piece creatPiece(){
+        Piece newPiece;
+        int number;
+        Random generator = new Random();
+        number = generator.nextInt(7);
+        
+        switch(number){
+                case 0:
+                    newPiece = new Piece1(width_ , height_);
+                    break;
+                   
+                case 1:
+                    newPiece = new Piece2(width_ , height_);
+                    break;
+                    
+                case 2:
+                    newPiece = new Piece3(width_ , height_);
+                    break; 
+                    
+                case 3:
+                    newPiece = new Piece4(width_ , height_);
+                    break;
+
+                case 4:
+                    newPiece = new Piece5(width_ , height_);
+                    break;
+
+                case 5:
+                    newPiece = new Piece6(width_ , height_);
+                    break;
+
+                case 6:
+                    newPiece = new Piece7(width_ , height_);
+                    break;
+                    
+                //procurar qual classe gera o peça em formato de i e fazer com que essa seja a padrão    
+                default:
+                    newPiece = new Piece7(width_ , height_);
+                    break;
+            }
+        return newPiece;
     }
 }

@@ -13,6 +13,7 @@ public class Scene {
     private final int width_, height_;
     private boolean field_[][];
     private int cellSize_;
+    private int score_ = 0;
 
     /**
      *
@@ -62,6 +63,8 @@ public class Scene {
                 field_[i][j] = field_[i + cellSize_][j];
             }
         }
+        
+        scoreCounter();
     }
 
     /**
@@ -85,8 +88,8 @@ public class Scene {
         Piece newPiece;
         int number;
         Random generator = new Random();
-        number = generator.nextInt(7);
-//        number = 8;
+//        number = generator.nextInt(7);
+        number = 0;
         switch (number) {
             case 0:
                 newPiece = new Piece1(width_, height_);
@@ -123,23 +126,27 @@ public class Scene {
         }
         return newPiece;
     }
-
+    
+    
     //testa se a peça deve fazer parte do cenário
     public boolean checkGet(Piece testPiece) {
         boolean appendPiece = new Boolean(false);
-        for (int i = 1; i < testPiece.getSize(); i++) {
+        
+        for (int i = 0; i < testPiece.getSize(); i++) {
+            
             Point2D tmp = testPiece.getPoint(i);
             int x = (int) tmp.getX();
             int y = (int) tmp.getY();
 
             if (y < height_) {
            
-                if (y == 0 + 10|| (getCell(x, y - 10) == true)) { //10 tem que ser substituido por cellSize
-                    System.out.println(y);
-                    appendPiece = true;
-                    return appendPiece;
+                if ((y <= 10)) { //10 tem que ser substituido por cellSize
+                    System.out.println("X: "+ x + " Y: "+ y);
+                    return true;
                 }
             }
+            System.out.println(y);
+            
         }
 
         return appendPiece;
@@ -159,5 +166,22 @@ public class Scene {
     
     public boolean getCell(int x, int y){
         return field_[x][y];
+    }
+    
+    public boolean getCellAhead(int x, int y){
+        if(y < getHeight() && y > 11 ){
+            return field_[x][y - 10];
+        }
+        
+        return field_[x][y];
+    }
+    
+    /**
+     * 
+     * @param void
+     * increase the score point for each call of lineDestroy method
+     */
+    private void scoreCounter(){
+        score_++;
     }
 }

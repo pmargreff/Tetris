@@ -69,12 +69,14 @@ public class Canvas extends TimerTask {
         buffid.g2dbi.drawImage(bg, 0, 0, null);
         boolean pFlag = true;
 
-        //testa se a peça pode ser deslocada ou se criamos uma nova
-        //TODO: passar isso para método de Scene
-        //TODO: passar método createPiece para Piece
+        unit.down();
 
-        unit.down();//ver por que o método está causando um memory leak
-
+        if (bgScene.checkGet(unit)) {
+            bgScene.getPiece(unit);
+            unit.destroyPiece();
+            unit = bgScene.creatPiece();
+            
+        }
         //desenha o scenário
         for (int i = 0; i < bgScene.getHeight(); i++){
             for(int j = 0; j < bgScene.getWidth(); j++){
@@ -88,14 +90,11 @@ public class Canvas extends TimerTask {
         for (int i = 0; i < unit.getSize(); i++) {
             Rectangle2D.Double quad = new Rectangle2D.Double(unit.getPoint(i).getX(), unit.getPoint(i).getY(), 0, 0);
             buffid.g2dbi.draw(quad);
-            System.out.println(unit.getPoint(i).getX() + " " + unit.getPoint(i).getY());
+//            System.out.println(unit.getPoint(i).getX() + " " + unit.getPoint(i).getY());
 
         }
 
-        if (bgScene.checkGet(unit)) {
-            bgScene.getPiece(unit);
-            unit = bgScene.creatPiece();
-        }
+        
 
         buffid.repaint();
 

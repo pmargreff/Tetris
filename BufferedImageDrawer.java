@@ -66,7 +66,7 @@ public class BufferedImageDrawer extends Frame implements KeyListener
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+        Piece.move(e.getKeyCode());
 //            System.out.println("testatteunaeu");
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

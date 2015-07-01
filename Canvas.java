@@ -26,7 +26,7 @@ public class Canvas extends TimerTask {
      * updated (needed for the synchronisation of the clock).
      */
     Canvas(BufferedImageDrawer bid, BufferedImage backGround,
-            int height, int delay) {
+            int height, int width, int delay) {
         buffid = bid;
         buffid.addKeyListener(bid);
         //The lines should have a thickness of 3.0 instead of 1.0.
@@ -53,7 +53,7 @@ public class Canvas extends TimerTask {
 //        buffid.g2dbi.setPaint(Color.black);
         buffid.g2dbi.setPaint(Color.white);
         bg = backGround;
-        bgScene = new Scene(600, height); //cria a nova imagem que fica no fundo
+        bgScene = new Scene(width, height); //cria a nova imagem que fica no fundo
 
         unit = bgScene.creatPiece();
 
@@ -68,31 +68,35 @@ public class Canvas extends TimerTask {
         //Draw the background.
         buffid.g2dbi.drawImage(bg, 0, 0, null);
         boolean pFlag = true;
-        
+
         //testa se a peça pode ser deslocada ou se criamos uma nova
         //TODO: passar isso para método de Scene
         //TODO: passar método createPiece para Piece
-        
-        for (int i = 0; i < unit.getSize(); i++) {
 
-            if ((unit.getPoint(i).getY() == 0) && (pFlag)) {
-                pFlag = false;
-                bgScene.getPiece(unit);
-                unit = bgScene.creatPiece();
+        unit.down();//ver por que o método está causando um memory leak
+
+        //desenha o scenário
+        for (int i = 0; i < bgScene.getHeight(); i++){
+            for(int j = 0; j < bgScene.getWidth(); j++){
+                if (bgScene.getCell(i, j) == true){
+                    Rectangle2D.Double quad = new Rectangle2D.Double(i, j, 0, 0);
+                    buffid.g2dbi.draw(quad);
+            
+                }
             }
-
         }
-
-        //desenha
         for (int i = 0; i < unit.getSize(); i++) {
             Rectangle2D.Double quad = new Rectangle2D.Double(unit.getPoint(i).getX(), unit.getPoint(i).getY(), 0, 0);
             buffid.g2dbi.draw(quad);
             System.out.println(unit.getPoint(i).getX() + " " + unit.getPoint(i).getY());
+
         }
 
-        
+        if (bgScene.checkGet(unit)) {
+            bgScene.getPiece(unit);
+            unit = bgScene.creatPiece();
+        }
 
-        unit.down();//ver por que o método está causando um memory leak
         buffid.repaint();
 
     }
@@ -105,7 +109,7 @@ public class Canvas extends TimerTask {
         int height = 600;
 
         //Specifies (in milliseconds) when the frame should be updated.
-        int delay = 300;
+        int delay = 200;
 
         //The BufferedImage to be drawn in the window.
         BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -129,7 +133,7 @@ public class Canvas extends TimerTask {
         //The TimerTask in which the repeated computations drawing take place.
         Canvas dbce = new Canvas(bid,
                 backGround,
-                height,
+                height, width,
                 delay);
 
         Timer t = new Timer();

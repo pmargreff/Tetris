@@ -10,7 +10,7 @@ public class Piece1 extends Piece {
     
     Piece1(int width, int height) {
         super(width, height);
-        for (int j = 0; j < 4; j++) {
+        for (int j = 1; j < 4; j++) {
             Point tmp = new Point(width / 2, height + j * cellSize_);
             body_.add(tmp);
         }

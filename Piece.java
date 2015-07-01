@@ -9,17 +9,17 @@ import java.util.ArrayList;
 
 public abstract class Piece {
 
-    protected final int cellSize_;
+    protected static int cellSize_;
     private final int width_, height_;
 
     //TODO: fazer com que a cor se torne um atributo da peça
     Piece(int width, int height) {
-        this.cellSize_ = 10;
+        cellSize_ = 10;
         this.width_ = width;
         this.height_ = height;
     }
 
-    ArrayList<Point> body_ = new ArrayList<>();
+    static ArrayList<Point> body_ = new ArrayList<>();
 
     /**
      * 37 = left 39 = right 40 = down
@@ -27,7 +27,7 @@ public abstract class Piece {
      * @param direction move piece to selected direction
      */
     //TODO: tentar fazer o método mais curto
-    public void move(int direction) {
+    public static void move(int direction) {
         //move left
         if (direction == 37) {
             for (int i = 0; i < body_.size(); i++) {
@@ -48,7 +48,6 @@ public abstract class Piece {
 
         //move down
         if (direction == 40) {
-//            System.out.println(body_.size());
             for (int i = 0; i < body_.size(); i++) {
                 Point tmp = new Point(body_.get(i));
                 tmp.setLocation(tmp.getX(), tmp.getY() - cellSize_);
@@ -61,8 +60,8 @@ public abstract class Piece {
      * move down twice
      */
     public void down() {
-//        move(40);
         move(40);
+//        move(40);
     }
 
     /**

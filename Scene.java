@@ -13,6 +13,7 @@ public class Scene {
     private final int width_, height_;
     private boolean field_[][];
     private int cellSize_;
+    private int score_ = 0;
 
     /**
      * 
@@ -69,6 +70,8 @@ public class Scene {
                 field_[i][j] = field_[i + cellSize_][j];
             }
         }
+        
+        scoreCounter();
     }
     
     /**
@@ -127,5 +130,15 @@ public class Scene {
                     break;
             }
         return newPiece;
+    }
+    
+    
+    /**
+     * 
+     * @param void
+     * increase the score point for each call of lineDestroy method
+     */
+    private void scoreCounter(){
+        score_++;
     }
 }

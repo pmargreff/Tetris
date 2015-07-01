@@ -12,41 +12,28 @@ public class Scene {
 
     private final int width_, height_;
     private boolean field_[][];
-    private int cellSize_;
+    private final int cellSize_;
     private int score_ = 0;
-
+    private int countKill[]; 
     /**
      *
      * @param width
      * @param height use size of screen to calculate the array size
      */
-    Scene(int width, int height) {
+    Scene(int width, int height, int cellSize) {
         this.width_ = width;
         this.height_ = height;
+        this.cellSize_ = cellSize;
 
+        this.countKill = new int[width];
         this.field_ = new boolean[width][height];
     }
-    /**
-     *
-     * @param field Check if the lines is full and if it in true call
-     * lineDesntroy method
-     */
-    public void destroyCheck(boolean field[][]) {
-
-        for (int i = 0; i < height_; i = +cellSize_) {
-
-            Flag destroy = new Flag(true);
-
-            for (int j = 0; j < height_; j = +cellSize_) {
-                if (!field[i][j]) {
-
-                    destroy.setValue(false);
-
-                }
-
-                if (destroy.getValue()) {
-                    lineDestroy(i);
-                }
+ 
+    public void destroyCheck() {
+        
+        for(int i = 0; i < width_; i++){
+            if(this.countKill[i] >= this.width_ / this.cellSize_){
+                lineDestroy(i);
             }
         }
     }
@@ -57,31 +44,14 @@ public class Scene {
      * n to n-1 from line that should be override
      */
     public void lineDestroy(int line) {
-        for (int i = line; i < height_; i = +cellSize_) {
-            for (int j = 0; j < width_; j = +cellSize_) {
-
-                field_[i][j] = field_[i + cellSize_][j];
+        for (int i = line; i < width_; i++) {
+            for (int j = 0; j < height_; j++) {
+                
+                field_[i][j] = field_[i][j + cellSize_];
             }
         }
         
         scoreCounter();
-    }
-
-    /**
-     *
-     * @param part attach the piece with the cene
-     */
-    //TODO: CORRIGIR PARA PEÇA EM FORMATO DE I
-    public void getPiece(Piece part) {
-        int x, y;
-        for(int i = 0; i < part.getSize(); i++){
-            Point tmp = new Point(part.getPoint(i));
-//            int x, y;
-            x = (int) tmp.getX();
-            y = (int) tmp.getY();
-            field_[x][y] = true;
-        }
-        
     }
 
     public Piece creatPiece() {
@@ -89,7 +59,7 @@ public class Scene {
         int number;
         Random generator = new Random();
 //        number = generator.nextInt(7);
-        number = 0;
+        number = 3;
         switch (number) {
             case 0:
                 newPiece = new Piece1(width_, height_);
@@ -127,10 +97,29 @@ public class Scene {
         return newPiece;
     }
     
+    /**
+     *
+     * @param part attach the piece with the cene
+     */
+    public void getPiece(Piece part) {
+        int x, y;
+        for(int i = 0; i < part.getSize(); i++){
+            Point tmp = new Point(part.getPoint(i));
+            
+            x = (int) tmp.getX();
+            y = (int) tmp.getY();
+            
+            this.countKill[y]++;
+            field_[x][y + 10] = true;
+        }
+        
+        
+        
+    }
     
     //testa se a peça deve fazer parte do cenário
     public boolean checkGet(Piece testPiece) {
-        boolean appendPiece = new Boolean(false);
+        boolean appendPiece = false;
         
         for (int i = 0; i < testPiece.getSize(); i++) {
             
@@ -140,12 +129,12 @@ public class Scene {
 
             if (y < height_) {
            
-                if ((y <= 10)) { //10 tem que ser substituido por cellSize
-                    System.out.println("X: "+ x + " Y: "+ y);
+                if ((y <= 0) || (field_[x][y] == true)) { //10 tem que ser substituido por cellSize
+//                    System.out.println("X: "+ x + " Y: "+ y);
                     return true;
                 }
             }
-            System.out.println(y);
+//            System.out.println(y);
             
         }
 
@@ -169,7 +158,7 @@ public class Scene {
     }
     
     public boolean getCellAhead(int x, int y){
-        if(y < getHeight() && y > 11 ){
+        if(y < getHeight() && y > cellSize_ + 1){
             return field_[x][y - 10];
         }
         

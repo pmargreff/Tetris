@@ -6,6 +6,8 @@ import java.awt.Point;
  */
 public class Piece4 extends Piece {
 
+    static int flag_ = 0;
+    
     Piece4(int width, int height) {
         super(width, height);
 
@@ -16,5 +18,13 @@ public class Piece4 extends Piece {
             tmp = new Point((width / 2) - i  * cellSize_, height -  cellSize_);
             body_.add(tmp);
         }
+    }
+    
+     /**
+     * Turn the piece in opposite clockwise direction Set one vector for 'x' and
+     * one vector for 'y' and change the flag
+     */
+    public static void turn(){
+        
     }
 }

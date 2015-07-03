@@ -13,7 +13,6 @@ public class Canvas extends TimerTask {
     private BufferedImage bg;
 
     public static Piece unit;
-//    public static Snake snake = new Snake(600, 600);
     public Scene bgScene;
 
     /**
@@ -21,12 +20,13 @@ public class Canvas extends TimerTask {
      *
      * @param bid The buffered image to be drawn
      * @param backGround The background (buffered) image
-     * @param height Width of the window
+     * @param height Heigth of the window
+     * @param width Width of the window
      * @param delay Defines after how many milliseconds the image/frame is is
      * updated (needed for the synchronisation of the clock).
      */
     Canvas(BufferedImageDrawer bid, BufferedImage backGround,
-            int height, int width, int delay) {
+            int width,int height, int delay) {
         buffid = bid;
         buffid.addKeyListener(bid);
         //The lines should have a thickness of 3.0 instead of 1.0.
@@ -53,7 +53,7 @@ public class Canvas extends TimerTask {
 //        buffid.g2dbi.setPaint(Color.black);
         buffid.g2dbi.setPaint(Color.white);
         bg = backGround;
-        bgScene = new Scene(width, height); //cria a nova imagem que fica no fundo
+        bgScene = new Scene(width, height, 10); //cria a nova imagem que fica no fundo
 
         unit = bgScene.creatPiece();
 
@@ -64,23 +64,26 @@ public class Canvas extends TimerTask {
     //updated image on the window.
     @Override
     public void run() {
-
-        //Draw the background.
+      //Draw the background.
         buffid.g2dbi.drawImage(bg, 0, 0, null);
-        boolean pFlag = true;
-
+        
         unit.down();
-
+        
         if (bgScene.checkGet(unit)) {
             bgScene.getPiece(unit);
             unit.destroyPiece();
             unit = bgScene.creatPiece();
             
         }
-        //desenha o scenário
-        for (int i = 0; i < bgScene.getHeight(); i++){
-            for(int j = 0; j < bgScene.getWidth(); j++){
+        
+        bgScene.destroyCheck();
+        
+//desenha o scenário
+        for (int i = 0; i < bgScene.getWidth(); i++){
+            for(int j = 0; j < bgScene.getHeight(); j++){
+                
                 if (bgScene.getCell(i, j) == true){
+                    
                     Rectangle2D.Double quad = new Rectangle2D.Double(i, j, 0, 0);
                     buffid.g2dbi.draw(quad);
             
@@ -93,7 +96,6 @@ public class Canvas extends TimerTask {
 //            System.out.println(unit.getPoint(i).getX() + " " + unit.getPoint(i).getY());
 
         }
-
         
 
         buffid.repaint();
@@ -103,7 +105,7 @@ public class Canvas extends TimerTask {
     public static void main(String[] argv) {
 
         //Width of the window
-        int width = 600;
+        int width = 300;
         //Height of the window
         int height = 600;
 
@@ -132,7 +134,7 @@ public class Canvas extends TimerTask {
         //The TimerTask in which the repeated computations drawing take place.
         Canvas dbce = new Canvas(bid,
                 backGround,
-                height, width,
+                 width, height,
                 delay);
 
         Timer t = new Timer();

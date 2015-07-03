@@ -6,12 +6,28 @@ import java.util.ArrayList;
  *
  * @author pmargreff
  */
-public class Piece {
+public abstract class Piece {
 
+    /**
+     * The width of cell that composed Pieces
+     */
     protected static int cellSize_;
-    protected static int width_, height_;
+    
+    /**
+     * The width of window
+     */
+    protected static int width_;
 
-    //TODO: fazer com que a cor se torne um atributo da peça
+    /**
+     * The width of cell that composed Pieces
+     */
+    protected static int  height_;
+    
+    /**
+     * Constructor the piece is dependent of Canvas size
+     * @param width Screen width
+     * @param height Screen height
+     */
     Piece(int width, int height) {
         cellSize_ = 10;
         width_ = width;
@@ -21,11 +37,9 @@ public class Piece {
     static ArrayList<Point> body_ = new ArrayList<>();
 
     /**
-     * 37 = left 39 = right 40 = down
-     *
-     * @param direction move piece to selected direction
+     * Get the int that represent the direction to move
+     * @param direction Integer that represents the direction
      */
-    //TODO: tentar fazer o método mais curto
     public static void move(int direction) {
         //move left
         if (direction == 37 && checksBorders(direction)) {
@@ -56,18 +70,18 @@ public class Piece {
     }
 
     /**
-     * move down twice
+     * Down the piece
      */
     public void down() {
         move(40);
-//        move(40);
+
     }
 
     /**
-     * checks if piece is inside of field
+     * Checks if piece is inside of field
      *
-     * @param direction
-     * @return a boolean - true if is inside false if isn't
+     * @param direction Integer that represents the direction
+     * @return Return true if is inside and false if isn't
      */
     public static boolean checksBorders(int direction) {
 //        boolean isInside = true;
@@ -91,20 +105,27 @@ public class Piece {
         return true;
     }
 
+    /**
+     * Destroy the piece
+     */
     public void destroyPiece() {
         body_.removeAll(body_);
     }
 
+    /**
+     * Get the points number that composes one piece
+     * @return Return the points number
+     */
     public int getSize() {
         return body_.size();
     }
 
+    /**
+     * Return the Point relative to index of Piere
+     * @param index index of list
+     * @return Returns the relative Point
+     */
     public Point getPoint(int index) {
         return body_.get(index);
     }
-
-    //tentar com que classe seja obrigatória
-//    public static void turn() {
-//        System.out.println("Mãe");
-//    }
 }

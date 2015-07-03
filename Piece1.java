@@ -1,4 +1,6 @@
+
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
@@ -6,96 +8,35 @@ import java.awt.Point;
  */
 public class Piece1 extends Piece {
 
-    int flag_;
-    
+    static int flag_ = 0;
+
     Piece1(int width, int height) {
         super(width, height);
-        for (int j = 1; j < 4; j++) {
+        for (int j = 0; j < 4; j++) {
             Point tmp = new Point(width / 2, height + j * cellSize_);
             body_.add(tmp);
         }
     }
-    
+
     /**
-     * Turn the piece in opposite clockwise direction
-     * Set one vector for 'x' and one vector for 'y'
-     * and change the flag
+     * Turn the piece in opposite clockwise direction Set one vector for 'x' and
+     * one vector for 'y' and change the flag
      */
-    
-    public void Turn(){
-        Point ref = new Point(body_.get(1)); //reference point
-        Point tmp = new Point(ref); 
-        int h;
-        int x[] = new int[3];
-        int y[] = new int[3];
+    public static void turn() {
+//        Point ref = new Point(body_.get(1)); //reference point
+        Point tmp = new Point();
+//        ArrayList<Point> body = new ArrayList<>();
+        double x = body_.get(0).getX();
+        double y = body_.get(0).getY();
         
-        switch (flag_){
-            
-            case 0:
-                
-                for (int i = 0; i < 3; i++) {
-                    x[i] = 0;
-                    if (i==0) y[i] = -1;
-                    else y[i] = i;
-                }
-                
-                flag_ = 1;
-                
-            break;
-                
-            case 1:
-            
-                for (int i = 0; i < 3; i++) {
-                    y[i] = 0;
-                    if (i<2) x[i] = i-2;
-                    else x[i] = i-1;
-                }
-            
-               flag_ = 2; 
-                
-            break;
-                
-            case 2:
-                h=1;
-                
-                for (int i = 0; i < 3; i++) {
-                    x[i] = 0;
-                    if (i>0) y[i] = h - 1;
-                    else y[i] = h;
-                        
-                    h--;
-                }
-                
-                flag_ = 3;
-                
-            break;
-                
-            case 3:
-                h = 2;
-                
-                for (int i = 0; i > 3 ; i++) {
-                    y[i] = 0;
-                    if(i>1) x[i] = h - 1;
-                    else x[i] = h;
-                    
-                    h--;
-                }
-            
-                flag_ = 0;
-                        
-            break;
+        body_.removeAll(body_);
+        
+        for (int i = 0; i < 4; i++) {
+            tmp.setLocation(12 * i + x, y);
+            body_.add(i, tmp);
+            System.out.println("Teste");
         }
         
-        //reference 'ref' to calculate and  set the new cell of piece
-        tmp.setLocation((ref.getX() + x[0] * cellSize_), (ref.getY() + y[0] * cellSize_));
-        body_.set(0, tmp);
-
-        tmp.setLocation((ref.getX() + x[1] * cellSize_), (ref.getY() + y[1] * cellSize_));
-        body_.set(2, tmp);
-
-        tmp.setLocation((ref.getX() + x[2] * cellSize_), (ref.getY() + y[2]  * cellSize_));
-        body_.set(3, tmp);
-    
+        int test = 0;
     }
-    
 }

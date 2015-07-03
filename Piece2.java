@@ -6,7 +6,7 @@ import java.awt.Point;
  */
 public class Piece2 extends Piece {
 
-    int flag_;
+    static int flag_ = 0;
 
     Piece2(int width, int height) {
         super(width, height);
@@ -35,7 +35,7 @@ public class Piece2 extends Piece {
      * and change the flag
      */
     
-    public void Turn() {
+    public static void turn() {
         Point ref = new Point(body_.get(1)); //reference point
         Point tmp = new Point(ref); 
         int x[] = new int[3];

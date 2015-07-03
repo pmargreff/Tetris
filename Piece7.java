@@ -1,10 +1,6 @@
 
 import java.awt.Point;
 
-/**
- *
- * @author gilberto
- */
 public class Piece7 extends Piece {
 
     static int flag_ = 0;

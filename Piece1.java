@@ -1,11 +1,6 @@
 
 import java.awt.Point;
-import java.util.ArrayList;
 
-/**
- *
- * @author gilberto
- */
 public class Piece1 extends Piece {
 
     static int flag_ = 0;

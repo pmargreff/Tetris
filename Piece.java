@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author pmargreff
+ * The base to the other Pieces
  */
 public abstract class Piece {
 

@@ -35,14 +35,26 @@ public class Record {
     }
     
     public void setRecord(int score){
+        record_ = score;
         
+        writeRecord();
     }
     
     //https://www.youtube.com/watch?v=qqeOwdPZDvk
     
     private void writeRecord(){
         
-        
+        try{
+            FileWriter fileWriter = new FileWriter(file_, false);
+            
+            try (PrintWriter printWriter = new PrintWriter(fileWriter)) {
+                printWriter.println(record_);
+                
+                printWriter.flush();
+            }
+        }catch(IOException ex){
+            
+        }
         
         
         
@@ -64,4 +76,18 @@ public class Record {
             
         }
     }
+    
+    public static void main(String[] argv){
+        
+        Record record = new Record();
+        
+        int score = 30;
+        
+        record.setRecord(score);
+        
+        System.out.println(record.getRecord());
+
 }
+}
+
+

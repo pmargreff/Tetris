@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Tetris">
+  <ClassDiagramComponents>
+    <Class name="Piece3" package="" visibility="public" xPosition="320.0" yPosition="186.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Piece2" package="" visibility="public" xPosition="93.0" yPosition="112.0">
+      <Fields>
+        <Field name="flag_" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="Turn" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Piece1" package="" visibility="public" xPosition="320.0" yPosition="9.0">
+      <Fields>
+        <Field name="flag_" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="Turn" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Piece" package="" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="cellSize_" type="int" visibility="protected" isStatic="true"/>
+        <Field name="width_" type="int" visibility="protected" isStatic="true"/>
+        <Field name="body_" type="ArrayList&lt;Point&gt;" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="move" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="direction"/>
+        </Method>
+        <Method name="down" returnType="void" visibility="public"/>
+        <Method name="checksBorders" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="int" name="direction"/>
+        </Method>
+        <Method name="destroyPiece" returnType="void" visibility="public"/>
+        <Method name="getSize" returnType="int" visibility="public"/>
+        <Method name="getPoint" returnType="Point" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Scene" package="" visibility="public" xPosition="827.0" yPosition="339.0">
+      <Fields>
+        <Field name="width_" type="int" visibility="private" isFinal="true"/>
+        <Field name="field_" type="boolean" visibility="private"/>
+        <Field name="cellSize_" type="int" visibility="private" isFinal="true"/>
+        <Field name="score_" type="int" visibility="private"/>
+        <Field name="countKill" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+          <Argument type="int" name="cellSize"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="destroyCheck" returnType="void" visibility="public"/>
+        <Method name="lineDestroy" returnType="void" visibility="public">
+          <Argument type="int" name="line"/>
+        </Method>
+        <Method name="creatPiece" returnType="Piece" visibility="public"/>
+        <Method name="getPiece" returnType="void" visibility="public">
+          <Argument type="Piece" name="part"/>
+        </Method>
+        <Method name="checkGet" returnType="boolean" visibility="public">
+          <Argument type="Piece" name="testPiece"/>
+        </Method>
+        <Method name="getWidth" returnType="int" visibility="public"/>
+        <Method name="getHeight" returnType="int" visibility="public"/>
+        <Method name="getCell" returnType="boolean" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="getCellAhead" returnType="boolean" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="scoreCounter" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Piece5" package="" visibility="public" xPosition="1327.0" yPosition="3.0">
+      <Fields>
+        <Field name="flag_" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="Turn" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Canvas" package="" visibility="public" xPosition="1189.0" yPosition="428.0">
+      <Fields>
+        <Field name="buffid" type="BufferedImageDrawer" visibility="private"/>
+        <Field name="bg" type="BufferedImage" visibility="private"/>
+        <Field name="unit" type="Piece" visibility="public" isStatic="true"/>
+        <Field name="bgScene" type="Scene" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="BufferedImageDrawer" name="bid"/>
+          <Argument type="BufferedImage" name="backGround"/>
+          <Argument type="int" name="height"/>
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="delay"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="run" returnType="void" visibility="public"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="argv"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Piece4" package="" visibility="public" xPosition="1394.0" yPosition="293.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Piece6" package="" visibility="public" xPosition="320.0" yPosition="293.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="BufferedImageDrawer" package="" visibility="public" xPosition="1773.0" yPosition="88.0">
+      <Fields>
+        <Field name="bi" type="BufferedImage" visibility="public"/>
+        <Field name="g2dbi" type="Graphics2D" visibility="public"/>
+        <Field name="g2d" type="Graphics2D" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="BufferedImage" name="buffIm"/>
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="paint" returnType="void" visibility="public">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+        <Method name="update" returnType="void" visibility="public">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+        <Method name="keyTyped" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyPressed" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyReleased" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Record" package="" visibility="public" xPosition="47.0" yPosition="420.0">
+      <Fields>
+        <Field name="file_" type="File" visibility="private"/>
+        <Field name="record_" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package"/>
+      </Constructors>
+      <Methods>
+        <Method name="getRecord" returnType="int" visibility="public"/>
+        <Method name="setRecord" returnType="void" visibility="public">
+          <Argument type="int" name="score"/>
+        </Method>
+        <Method name="writeRecord" returnType="void" visibility="private"/>
+        <Method name="readRecord" returnType="void" visibility="private"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="argv"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Flag" package="" visibility="public" xPosition="584.0" yPosition="420.0">
+      <Fields>
+        <Field name="value_" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="boolean" name="b"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setValue" returnType="void" visibility="public">
+          <Argument type="boolean" name="b"/>
+        </Method>
+        <Method name="getValue" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MyFinishWindow" package="" visibility="public" xPosition="295.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="windowClosing" returnType="void" visibility="public">
+          <Argument type="WindowEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Piece7" package="" visibility="public" xPosition="1500.0" yPosition="139.0">
+      <Fields>
+        <Field name="flag_" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="Turn" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="Piece4" target="Piece"/>
+    <IsRelation name="is" source="Piece5" target="Piece"/>
+    <UseRelation source="Scene" target="Piece" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bgScene" source="Canvas" target="Scene" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Piece6" target="Piece"/>
+    <IsRelation name="is" source="Piece1" target="Piece"/>
+    <HasRelation name="buffid" source="Canvas" target="BufferedImageDrawer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="unit" source="Canvas" target="Piece" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Piece3" target="Piece"/>
+    <IsRelation name="is" source="Piece7" target="Piece"/>
+    <IsRelation name="is" source="Piece2" target="Piece"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
